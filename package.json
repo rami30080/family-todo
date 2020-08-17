@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/rami30080/family-todo#readme",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "express": "^4.17.1",
+    "mongoose": "^5.10.0"
+  },
+  "devDependencies": {}
 }
