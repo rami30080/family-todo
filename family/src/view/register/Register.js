@@ -5,14 +5,15 @@ const Register = ()=>{
 
     function registerHandler(e){
         e.preventDefault();
-        const {Name,Family,Img,Password} = e.target.elements
+        const {userEmail ,Name,Family,Img,Password} = e.target.elements
         const name = Name.value
         const family = Family.value
         const img = Img.value
         const pass = Password.value
+        const useremail = userEmail.value
         fetch('/register', {
             method: 'POST',
-            body: JSON.stringify({ name, family , img , pass }),
+            body: JSON.stringify({ useremail ,name, family , img , pass }),
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -24,9 +25,11 @@ const Register = ()=>{
         
     }
 
+
     return(
         <div>
             <form onSubmit={registerHandler}>
+            <input type="text" placeholder="userEmail" name="userEmail" ></input>
             <input type="text" placeholder="name" name="Name" ></input>
             <input type="text" placeholder="family" name="Family" ></input>
             <input type="text" placeholder="image" name="Img" ></input>

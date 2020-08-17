@@ -37,11 +37,13 @@ const Task = Mongoose.model("Task", {
 })
 
 app.post('/register', (req, res)=>{
-    console.log("hbjk")
-   
-    const {name , family , img , pass} = req.body;
-    console.log(name)
-    res.send('aaaa')
+    const {useremail ,name , family , img , pass} = req.body;
+    let User = User({useremail ,name , family , img , pass})
+    // User.save()
+    .then(doc=>{
+      console.log(doc)
+      res.send({register:true, id:doc._id});
+    })
     
   })
 
