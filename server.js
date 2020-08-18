@@ -81,5 +81,27 @@ app.post('/login', (req, res)=>{
     
   })
 
+
+  app.post('/renderusers', async (req, res)=>{
+    const {name , family} = req.body;
+    let docs = await Task.aggregate([
+      { $match: { 'user.lastName':family } },
+      {
+          $group: {
+              _id: '$user.lastName',
+              lastname: { $push: "$$ROOT" }
+          }
+      },
+
+  ])
+
+  console.log(docs[0].lastname[0].taskContent)
+  res.send(docs)
+
+
+
+    
+  })
+
 const port = process.env.PORT || 3000;
 app.listen(port,()=>{console.log('server listen on port ',port)})

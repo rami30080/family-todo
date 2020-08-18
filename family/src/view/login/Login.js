@@ -1,7 +1,10 @@
 import React from 'react'
 import './Login.css'
+import { Redirect} from 'react-router';
+import {useHistory }from "react-router-dom";
 
 const Login = ()=>{
+    let history=useHistory()
     function loginHandler(e){
         e.preventDefault();
         const {Name,Family,Password} = e.target.elements
@@ -17,10 +20,16 @@ const Login = ()=>{
         }).then(res => res.json())
             .then(data => {
                 const {loggedin} = data
-                console.log(loggedin)
+                if(loggedin){
+                    localStorage.setItem('familyID', family);
+                    localStorage.setItem('NameID', name);
+                    history.push('/main')
 
+                }
+                else{
+                document.getElementById("badmsg").innerText="User Not Exist's";
+                }
             })
-        
     }
 
     return(
@@ -32,6 +41,8 @@ const Login = ()=>{
             <button>Login</button>
             </form>
             </p>
+
+            <p id="badmsg"></p>
 
         </div>
     )
