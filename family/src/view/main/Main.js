@@ -2,7 +2,6 @@ import React from 'react'
 import './Main.css'
 
 const Main = ()=>{
-
         let family = localStorage.getItem('familyID');
         let name = localStorage.getItem('NameID');
         fetch('/renderusers', {
@@ -12,14 +11,21 @@ const Main = ()=>{
                 'Content-Type': 'application/json'
             },
         }).then(res => res.json())
-            .then(data => {
+            .then( async data => {
                 const docs = data
-                console.log(docs[0].lastname)
+                let u = docs[0].lastname[0].taskContent
+                console.log(u)                    
+                const users = docs[0].lastname
+                
+                users.map(function(item, index){
+                    console.log('test');
+                document.getElementById('rami').innerText = <li key={index}>test</li>
+                  })
 
             })
     return(
 
-        <div>
+        <div id='rami'>
         <h1>Main</h1>
         </div>
         
