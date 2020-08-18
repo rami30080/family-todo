@@ -13,6 +13,9 @@ const Task = (props)=>{
       user.map((task,index)=>{
           return (console.log(task.taskContent))
       })
+      localStorage.setItem("TaskItem", user);
+      history.push('/taskdetails')
+
   }
     return(
         <div>
@@ -21,8 +24,9 @@ const Task = (props)=>{
             
             user.map((task,index)=>
             
-             <h1 key={index}>{task.taskTitle}             
-             <button onClick={taskDetails}>Details</button>
+             <h1 key={index}>
+                 <button onClick={taskDetails}>{task.taskTitle} 
+                 </button>
              </h1>
 
              )
