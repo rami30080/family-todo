@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import './Main.css'
+import TaskDetails from '../components/taskDetails/TaskDetails'
 import Task from '../components/Task/Task'
 
 const Main = ()=>{

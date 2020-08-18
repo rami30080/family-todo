@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./view/login/Login";
 import Register from "./view/register/Register";
 import Main from "./view/main/Main";
+import TaskDetails from "./view/components/taskDetails/TaskDetails"
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -16,6 +17,9 @@ export default function App() {
           </Route>
           <Route path="/register">
             <Reg />
+          </Route>
+          <Route path="/taskdetails">
+            <Task />
           </Route>
           <Route path="/">
             <Home />
@@ -51,4 +55,10 @@ function Logged() {
   );
 }
 
-// function Task() {}
+ function Task() {
+   return(
+     <div className="page">
+       <TaskDetails/>
+     </div>
+   )
+ }
