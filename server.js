@@ -16,14 +16,14 @@ const url = "mongodb+srv://nimer:N1N1N1N1@cluster0.tejcy.mongodb.net/toDo";
 const Mongoose = require('mongoose');
 Mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const User = Mongoose.model("User", {
+const User = Mongoose.model("users", {
     userEmail: String,
     firstName: String,
     lastName: String,
     imgUrl: String,
     password: String
 })
-const Task = Mongoose.model("Task", {
+const Task = Mongoose.model("tasks", {
     user: {
         userEmail: String,
         firstName: String,
@@ -36,14 +36,48 @@ const Task = Mongoose.model("Task", {
     done: Boolean
 })
 
+
+
 app.post('/register', (req, res)=>{
     const {useremail ,name , family , img , pass} = req.body;
-    let User = User({useremail ,name , family , img , pass})
-    // User.save()
-    .then(doc=>{
-      console.log(doc)
-      res.send({register:true, id:doc._id});
+    User.find({firstName:name,lastName:family}).then(doc=>{
+        if(doc.length>0){
+            console.log("in")
+        }else{
+            console.log("else")
+            User.create(
+                {
+                    userEmail:useremail,
+                    firstName:name,
+                    lastName:family,
+                    imgUrl:img,
+                    password:pass
+                }
+            ).then(doc=>{
+                   console.log(doc)
+                   res.send({register:true});
+            })
+        }
+        
     })
+
+    
+  })
+
+  
+app.post('/login', (req, res)=>{
+    const {name , family , pass} = req.body;
+    User.find({firstName:name,lastName:family,password:pass}).then(doc=>{
+        if(doc.length>0){
+            console.log("in")
+            res.send({loggedin:true})
+        }else{
+            console.log("else")
+            res.send({loggedin:false})
+        }
+        
+    })
+
     
   })
 

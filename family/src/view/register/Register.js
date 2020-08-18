@@ -19,7 +19,8 @@ const Register = ()=>{
             },
         }).then(res => res.json())
             .then(data => {
-                console.log('Aaa')
+                const {register} = data
+                console.log(register)
 
             })
         
