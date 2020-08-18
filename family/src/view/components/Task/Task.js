@@ -10,12 +10,12 @@ const Task = (props)=>{
   console.log(user[0])
     return(
         <div>
-           
+           {item._id}
             {
             
             user.map((task,index)=>
             
-             <h1 key={index}>{task.user.firstName}<br></br>{task.taskContent}</h1>
+             <h1 key={index}>{task.taskContent}</h1>
           
             
              )

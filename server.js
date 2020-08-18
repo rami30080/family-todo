@@ -88,7 +88,7 @@ app.post('/login', (req, res)=>{
       { $match: { 'user.lastName':family } },
       {
           $group: {
-              _id: '$user.lastName',
+              _id: '$user.firstName',
               lastname: { $push: "$$ROOT" }
           }
       },
