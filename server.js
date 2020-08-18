@@ -95,7 +95,7 @@ app.post('/login', (req, res)=>{
 
   ])
 
-  console.log(docs[0].lastname[0].taskContent)
+  console.log(docs)
   res.send(docs)
 
 
